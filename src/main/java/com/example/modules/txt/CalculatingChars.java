@@ -1,15 +1,15 @@
 package com.example.modules.txt;
 
 import com.example.modules.Module;
+import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class CalculatingChars implements Module {
     @Override
     public boolean validateFormat(String format) {
