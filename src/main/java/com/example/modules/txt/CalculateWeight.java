@@ -3,6 +3,7 @@ package com.example.modules.txt;
 import com.example.modules.Module;
 import org.springframework.stereotype.Component;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,10 +23,13 @@ public class CalculateWeight implements Module {
     @Override
     public String function(File file) {
         int charsCount;
+        String carrot = "carrot";
         double carrots = 0.0;
         try{
-            charsCount = Files.lines(file.toPath()).flatMapToInt(String::chars).sum();
-            carrots = (float)(charsCount / "carrot".length());
+            charsCount = Files.lines(file.toPath())
+                    .mapToInt(String::length)
+                    .sum();
+            carrots = (double)(charsCount) / (carrot.length());
         }catch (IOException e){
             e.printStackTrace();
         }
