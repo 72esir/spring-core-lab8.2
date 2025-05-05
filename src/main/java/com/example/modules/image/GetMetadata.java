@@ -10,14 +10,16 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class GetMetadata implements Module {
     @Override
-    public boolean validateFormat(String format) {
-        return format.equals("png") || format.equals("jpg") || format.equals("jpeg");
+    public boolean validateFormat(File file) {
+        try {
+            return file.getName().split("\\.")[1].equals("png") || file.getName().split("\\.")[1].equals("jpg") || file.getName().split("\\.")[1].equals("jpeg");
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override

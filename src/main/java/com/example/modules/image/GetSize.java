@@ -11,8 +11,12 @@ import java.io.IOException;
 @Component
 public class GetSize implements Module {
     @Override
-    public boolean validateFormat(String format) {
-        return format.equals("png") || format.equals("jpg") || format.equals("jpeg");
+    public boolean validateFormat(File file) {
+        try {
+            return file.getName().split("\\.")[1].equals("png") || file.getName().split("\\.")[1].equals("jpg") || file.getName().split("\\.")[1].equals("jpeg");
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override

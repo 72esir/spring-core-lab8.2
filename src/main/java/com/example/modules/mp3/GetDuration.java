@@ -19,8 +19,12 @@ import java.io.InputStream;
 @Component
 public class GetDuration implements Module {
     @Override
-    public boolean validateFormat(String format) {
-        return format.equals("mp3");
+    public boolean validateFormat(File file) {
+        try {
+            return file.getName().split("\\.")[1].equals("mp3");
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override

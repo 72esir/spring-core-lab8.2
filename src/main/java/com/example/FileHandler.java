@@ -32,7 +32,7 @@ public class FileHandler {
         int i = 0;
         List<Module> validateModules = new ArrayList<>();
         for(Module module : modules){
-            if (module.validateFormat(getFormat(file.getPath()))){
+            if (module.validateFormat(file)){
                 i++;
                 System.out.println(i + ") " + module.functionDescription());
                 validateModules.add(module);

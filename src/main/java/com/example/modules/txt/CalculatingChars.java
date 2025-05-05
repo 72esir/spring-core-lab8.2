@@ -12,8 +12,12 @@ import java.util.stream.Collectors;
 @Component
 public class CalculatingChars implements Module {
     @Override
-    public boolean validateFormat(String format) {
-        return format.equals("txt");
+    public boolean validateFormat(File file) {
+        try {
+            return file.getName().split("\\.")[1].equals("txt");
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override

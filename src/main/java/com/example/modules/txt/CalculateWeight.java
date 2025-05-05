@@ -11,8 +11,12 @@ import java.nio.file.Files;
 @Component
 public class CalculateWeight implements Module {
     @Override
-    public boolean validateFormat(String format) {
-        return format.equals("txt");
+    public boolean validateFormat(File file) {
+        try {
+            return file.getName().split("\\.")[1].equals("txt");
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override
