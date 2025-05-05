@@ -12,12 +12,12 @@ import java.io.IOException;
 public class GetSize implements Module {
     @Override
     public boolean validateFormat(String format) {
-        return format.equals("png");
+        return format.equals("png") || format.equals("jpg") || format.equals("jpeg");
     }
 
     @Override
     public String functionDescription() {
-        return "This function return size of your file";
+        return "This function return size of your image";
     }
 
     @Override

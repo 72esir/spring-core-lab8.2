@@ -10,11 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
-public class GetMetadata implements Module {
+public class GetMIMEType implements Module {
     @Override
     public boolean validateFormat(String format) {
         return format.equals("png") || format.equals("jpg") || format.equals("jpeg");
@@ -22,23 +20,24 @@ public class GetMetadata implements Module {
 
     @Override
     public String functionDescription() {
-        return "This function return metadata of your image";
+        return "This function return MIME type of your image";
     }
 
     @Override
     public String function(File file) {
-        StringBuilder data = new StringBuilder();
+        String mimeType = "";
         try {
             Metadata metadata = ImageMetadataReader.readMetadata(file);
             for (Directory directory : metadata.getDirectories()) {
                 for (Tag tag : directory.getTags()) {
-                    data.append(tag);
-                    data.append("\n");
+                    if (tag.toString().startsWith("[File Type] Detected MIME Type")){
+                        mimeType = tag.toString().split("-")[1].strip();
+                    }
                 }
             }
         }catch (ImageProcessingException | IOException e) {
             e.printStackTrace();
         }
-        return "Metadata of your file:\n" + data;
+        return "MIME type of your image: " + mimeType;
     }
 }
