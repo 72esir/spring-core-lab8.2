@@ -11,11 +11,11 @@ import java.io.File;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 @SpringBootApplication
 public class Main implements CommandLineRunner {
-    private final FileHandler moduleService;
+    private final FileHandler fileHandler;
 
     @Autowired
-    public Main(FileHandler moduleService) {
-        this.moduleService = moduleService;
+    public Main(FileHandler fileHandler) {
+        this.fileHandler = fileHandler;
     }
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class Main implements CommandLineRunner {
             System.out.println("Please enter filename.");
             return;
         }
-        moduleService.setFile(new File(args[0]));
-        moduleService.execute();
+        fileHandler.setFile(new File(args[0]));
+        fileHandler.execute();
     }
 }
